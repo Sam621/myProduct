@@ -1,0 +1,64 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">        
+        <!-- <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="> -->
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading"> {{pageTitle}}</div>
+        <!-- <h1 class="panel-title">Search for Products</h1> -->
+        <div class="panel-body">
+          <div class="form-group"  >
+            <label>Product name:</label>
+            <input type="text" id="txtSearch" class="form-control" [(ngModel)]= 'listFilter'/>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <br>
+         <button  class="btn btn-sm btn-primary" id="btnSearch" >
+          <i class="glyphicon glyphicon-search"></i> 
+          Search</button>
+         <button  class="btn btn-sm btn-primary" id="btnAdd">
+            <i class="glyphicon glyphicon-search"></i>  
+          Add</button>
+        </div>
+      </div>      
+      <div class="table-responsive">
+       
+        <table class="table table-condensed table-bordered table-striped col-lg-11" *ngIf ='filteredProduct.length'>
+          <thead class="table-hover">
+            <th class="col-sm-1"></th>
+            <th class="col-sm-5">Product name</th>
+            <th class="col-sm-5">Price</th>
+            <th class="col-sm-5">Rating</th>
+          </thead>
+      
+           <tbody>
+             <tr *ngFor='let product of filteredProduct'>
+                <td>
+                 <a href="#"><img [src] ='product.image' (click)='ShowProduct(product)' [title]='product.image' [style.width.px]='imageWidth'  [style.height.px]='imageHeight' style.margin.px='imageMargin'> 
+                 </a>
+                </td>
+                <td > {{product.name}}</td>
+                <td >{{product.price}}</td>
+                <td > <app-shared-rating 
+                  [rating] = 'product.rating'
+                  (RatingClick) = 'OnRateClicked($event)'
+                  ></app-shared-rating></td>
+             </tr>           
+          </tbody>
+        </table>
+      </div>
+      <div id="modalProductDetails"  style="display:none" *ngIf = 'selectedProduct != null'>
+        <div class="panel panel-primary">
+          <div class="panel-heading">{{selectedProduct.name}}</div>
+          <!-- <h1 class="panel-title">Search for Products</h1> -->
+          <div class="panel-body">
+            <div class="form-group">
+               <img [src] ='selectedProduct.image'  [title]='selectedProduct.image'  [style.width.px]= 100  [style.height.px]= 200 style.margin.px= 2 > <br>
+              <label>Price   : </label>{{selectedProduct.price}}<br>
+              <label>Imge Url: </label>{{selectedProduct.image}}<br>
+              <label>Rating  : </label>{{selectedProduct.rating}}
+            </div>
+          </div>
+
+        </div>
+      </div>

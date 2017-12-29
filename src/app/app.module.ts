@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ProductComponent } from '../product/product.component';
 import { RatingComponent } from '../rating/rating.component';
+import { ProductService } from '../product/product.service';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { RatingComponent } from '../rating/rating.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ ProductService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
