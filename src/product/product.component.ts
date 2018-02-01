@@ -58,7 +58,7 @@ export class ProductComponent implements OnInit {
       image: product.image,
       rating: product.rating
     };
-    $('#modalProductDetails').show();
+    // $('#myModal').show();
     // alert($('#modalProductDetails'));
   }
   ngOnInit(): void {
